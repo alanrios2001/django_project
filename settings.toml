@@ -1,0 +1,13 @@
+[default]
+DATABASE_NAME = "django_web"
+DATABASE_USER = "user"
+DATABASE_PASSWORD = "password"
+SECRET_KEY = ""
+DATABASE_HOST = "localhost"
+DATABASE_PORT = "3306"
+
+[development]
+DEBUG = true
+
+[production]
+DEBUG = false
