@@ -1,4 +1,4 @@
-A python-django project.
+A python-django project based on a log-in screen, with a ragistration option. After sign in, it has a personal to-do list.
 
 1. Clone project
 2. Install poetry
