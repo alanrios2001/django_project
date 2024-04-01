@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Cadastro</title>
+</head>
+<body>
+    <h2>Cadastro</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Usuário:</label>
+        <input type="text" name="username" id="username" required><br>
+
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <input type="submit" value="Cadastrar">
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </form>
+</body>
+</html>

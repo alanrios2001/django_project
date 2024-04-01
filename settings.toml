@@ -1,4 +1,5 @@
 [default]
+DATABASE_ENGINE = "django.db.backends.mysql"
 DATABASE_NAME = "django_web"
 DATABASE_USER = ""
 DATABASE_PASSWORD = ""

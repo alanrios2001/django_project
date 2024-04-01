@@ -1,0 +1,28 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Usuário:</label>
+        <input type="text" name="username" id="username" required><br>
+
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <input type="submit" value="Login">
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </form>
+    <!-- Adicione um link ou botão abaixo do formulário de login -->
+    <p>
+        Não tem uma conta? <a href="{% url 'signup' %}">Registre-se</a>
+    </p>
+</body>
+</html>
