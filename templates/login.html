@@ -1,28 +1,49 @@
 <!-- templates/login.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="{% static 'login.css'%}">
     <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="post">
+    <form class="form" method="post">
+        <h2>Login</h2>
         {% csrf_token %}
-        <label for="username">Usuário:</label>
-        <input type="text" name="username" id="username" required><br>
+        <div class="inputs">
+            <div class="input">
+                <div>
+                    <img src="{% static '/images/user-icon.png' %}" alt="ícone usuário">
+                    <label for="username">Usuário:</label>
+                </div>
+                
+                <input type="text" name="username" id="username" placeholder="usuário" required>
+            </div>
+            <div class="input">
+                <div>
+                    <img src="{% static '/images/password-icon.png' %}" alt="ícone usuário">
+                    <label for="password">Senha:</label>
+                </div>
+                
+                <input type="password" name="password" id="password" placeholder="senha" required>
+            </div>
 
-        <label for="password">Senha:</label>
-        <input type="password" name="password" id="password" required><br>
+            <a href="{% url 'login' %}">Esqueceu sua senha?</a>
+    
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+        </div>
+        
 
-        <input type="submit" value="Login">
-
-        {% if error %}
-            <p>{{ error }}</p>
-        {% endif %}
+        <div class="submit">
+            <input type="submit" value="Login">
+            <p>Não tem uma conta? <a href="{% url 'signup' %}">Registre-se</a></p>
+        </div>
     </form>
     <!-- Adicione um link ou botão abaixo do formulário de login -->
-    <p>
-        Não tem uma conta? <a href="{% url 'signup' %}">Registre-se</a>
-    </p>
 </body>
 </html>
