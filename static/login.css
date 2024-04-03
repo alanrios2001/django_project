@@ -63,6 +63,12 @@ body {
     border-radius: 5px;
     background-color: var(--grey);
     padding: 13px 10px;
+    border: 2px solid var(--grey);
+}
+
+.form .inputs input:focus {
+    border: 2px solid var(--dark);
+    outline: none;
 }
 
 .form div.input{
