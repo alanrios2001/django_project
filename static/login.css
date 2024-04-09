@@ -1,0 +1,103 @@
+:root {
+    --white: #ffffff;
+    --grey: #E1E5F2;
+    --blue: #BFDBF7;
+    --green: #1F7A8C;
+    --dark: #022B3A;
+}
+
+* {
+    font-family: "Inter", sans-serif;
+    color: var(--dark);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+body {
+    background-color: var(--green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form {
+    background-color: var(--white);
+    width: 270px;
+    display: flex;
+    height: auto;
+    gap: 71px;
+    flex-direction: column;
+    align-items: center;
+    padding: 31px 90px;
+    border-radius: 15px;
+}
+
+
+.form .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    width: 100%;
+    align-items: center;
+}
+
+.form .inputs input::placeholder{
+    color: var(--dark);
+}
+
+.form .inputs input {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--grey);
+    padding: 13px 10px;
+    border: 2px solid var(--grey);
+}
+
+.form .inputs input:focus {
+    border: 2px solid var(--dark);
+    outline: none;
+}
+
+.form div.input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form div.input div {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.form .submit {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    width: 100%;
+    align-items: center;
+}
+
+.submit input {
+    padding: 16px 53px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--dark);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
