@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 
 
 def home_view(request):
-    return render(request, "home.html")
+    return render(request, "home/home.html")
 
 
 def login_view(request):
@@ -19,9 +19,9 @@ def login_view(request):
             return redirect("pagina_de_sucesso")
         else:
             # Retorne um erro de 'login inválido'.
-            return render(request, "login.html", {"error": "Login inválido."})
+            return render(request, "auth/login.html", {"error": "Login inválido."})
     else:
-        return render(request, "login.html")
+        return render(request, "auth/login.html")
 
 
 def signup_view(request):
@@ -47,14 +47,14 @@ def signup_view(request):
         else:
             return render(
                 request,
-                "signup.html",
+                "auth/signup.html",
                 {"error": "Erro ao criar usuário. Talvez o nome de usuário já exista."},
             )
 
     else:
-        return render(request, "signup.html")
+        return render(request, "auth/signup.html")
 
 
 def success_view(request):
     # A decoração @login_required irá redirecionar usuários não autenticados para a página de login
-    return render(request, "success.html")
+    return render(request, "to_do_list/success.html")
