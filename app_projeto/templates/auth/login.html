@@ -1,8 +1,8 @@
-<!-- templates/login.html -->
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'login.css'%}">
     <title>Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +44,5 @@
             <p>Não tem uma conta? <a href="{% url 'signup' %}">Registre-se</a></p>
         </div>
     </form>
-    <!-- Adicione um link ou botão abaixo do formulário de login -->
 </body>
 </html>
