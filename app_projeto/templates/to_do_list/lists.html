@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do Lists</title>
+</head>
+<body>
+    <h1>To Do Lists de {{ request.user.username }}</h1>
+
+    <!-- Formulário para adicionar nova lista -->
+    <form action="{% url 'to_do_list' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="add_list">Adicionar Nova Lista</button>
+    </form>
+
+    <ul>
+        <!-- Realiza listagem das to_do_lists -->
+        {% for lista in listas %}
+            <li>
+                {{ lista.nome }}
+                <!-- Botão de Excluir -->
+                <form action="{% url 'to_do_list' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" name="delete" value="{{ lista.id }}" style="background-color: red; color: white;">Excluir</button>
+                </form>
+
+                <!-- Botão de Editar -->
+                <form action="{% url 'to_do_list' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" name="editar" value="{{ lista.id }}" style="background-color: red; color: white;">Editar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
