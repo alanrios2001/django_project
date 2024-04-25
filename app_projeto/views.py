@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 def home_view(request):
@@ -55,6 +56,7 @@ def signup_view(request):
         return render(request, "auth/signup.html")
 
 
+@login_required(login_url="/login/")
 def success_view(request):
     # A decoração @login_required irá redirecionar usuários não autenticados para a página de login
     return render(request, "to_do_list/success.html")
