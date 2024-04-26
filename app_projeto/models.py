@@ -25,6 +25,7 @@ class Listas(models.Model):
 class Itens(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
+    status = models.BooleanField(default=0)
     id_lista = models.ForeignKey(Listas, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
