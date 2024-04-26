@@ -5,6 +5,37 @@
     <title>Title</title>
 </head>
 <body>
+    <h1>To Do Items de "{{ lista.nome }}"</h1>
+    <!-- Formulário para adicionar novo item -->
+    <form action="{% url 'to_do_itens' list_name=lista.nome %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="add_item">Adicionar Novo Item</button>
+    </form>
 
+    <ul>
+        <!-- Realiza listagem das to_do_lists -->
+        {% for item in itens %}
+        <li>
+            {{ item.nome }}
+            <!-- Botão de Excluir -->
+            <form action="{% url 'to_do_itens' list_name=lista.nome %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" name="delete" value="{{ item.id }}">Deletar</button>
+            </form>
+            <form action="{% url 'to_do_itens' list_name=lista.nome %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="text" name="new_name_{{ item.id }}" placeholder="Novo nome">
+                <button type="submit" name="edit" value="{{ item.id }}">Editar</button>
+            </form>
+            <span>Status: {{ item.status }}</span>
+            <form action="{% url 'to_do_itens' list_name=lista.nome %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" name="toggle_status" value="{{ item.id }}">Toggle Status</button>
+            </form>
+        </li>        
+        {% endfor %}
+    </ul>
+    
 </body>
 </html>
