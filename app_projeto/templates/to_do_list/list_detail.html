@@ -22,12 +22,19 @@
     <ul>
     {% for item in itens %}
         <li>
-            <form action="{% url 'list_detail' lista.id %}" method="post">
+            <!-- Botão de Selecionar junto com os itens -->
+            <form action="{% url 'list_detail' lista.id %}" method="post" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="item_id" value="{{ item.id }}">
-                <input type="hidden" name="is_done" value="False"> <!-- Envia False como padrão -->
+                <input type="hidden" name="is_done" value="False">
                 <input type="checkbox" id="item-{{ item.id }}" name="is_done" value="True" {% if item.is_done %} checked {% endif %} onchange="this.form.submit()">
                 <label for="item-{{ item.id }}">{{ item.nome }}</label>
+            </form>
+
+            <!-- Botão de Excluir -->
+            <form action="{% url 'list_detail' lista.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" name="delete" value="{{ item.id }}" style="background-color: red; color: white;">X</button>
             </form>
         </li>
     {% empty %}
