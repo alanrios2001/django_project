@@ -31,7 +31,7 @@
                 <input type="password" name="password" id="password" placeholder="senha" required>
             </div>
 
-            <a href="{% url 'login' %}">Esqueceu sua senha?</a>
+            <a href="{% url 'password_reset' %}">Esqueceu sua senha?</a>
     
             {% if error %}
                 <p>{{ error }}</p>
