@@ -35,7 +35,7 @@ class Itens(models.Model):
 
     @staticmethod
     def create(nome, id_lista):
-        lista = get_object_or_404(Listas, id=id_lista)  # Recupera a instância de Listas ou retorna 404 se não existir
+        lista = get_object_or_404(Listas, id=id_lista)
         item = Itens(nome=nome, id_lista=lista)
         item.save()
         return item

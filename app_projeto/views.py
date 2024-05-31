@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from app_projeto.models import Listas, Itens
-from .forms import ListasForm
+from .forms import ListasForm, ItensForm
 
 
 def home_view(request):
@@ -63,6 +63,7 @@ def signup_view(request):
 @login_required(login_url="/login/")
 def lists_view(request):
     if request.method == 'POST':
+        form = ListasForm(request.POST)
         # lida com a exclusão de listas
         if 'delete' in request.POST:
             lista_id = request.POST.get('delete')
@@ -70,17 +71,19 @@ def lists_view(request):
             lista.deleted_at = datetime.now()
             lista.save()
             return redirect('to_do_list')
-        # lida com a edição de listas
-        elif 'edit' in request.POST:
-            pass
+
         # lida com a adição de listas
         elif "add_list" in request.POST:
-            form = ListasForm(request.POST)
             if form.is_valid():
                 nova_lista = form.save(commit=False)
                 nova_lista.id_usuario = request.user
                 nova_lista.save()
                 return redirect('to_do_list')
+
+        # lida com a seleção de listas
+        elif 'select' in request.POST:
+            return redirect('list_detail', id_lista=request.POST.get('select'))
+
     else:
         form = ListasForm()
 
@@ -89,5 +92,28 @@ def lists_view(request):
 
 
 @login_required(login_url="/login/")
-def lists_itens_view(request):
-    return render(request, "to_do_list/list_itens.html")
+def list_detail_view(request, id_lista):
+    if request.method == 'POST':
+        form = ItensForm(request.POST)
+        # lida com a exclusão de itens
+        if 'add_item' in request.POST:
+            if form.is_valid():
+                novo_item = form.save(commit=False)
+                novo_item.id_lista_id = id_lista
+                novo_item.save()
+                return redirect('list_detail', id_lista=id_lista)
+        # lida com a adição de itens
+        elif 'delete' in request.POST:
+            item_id = request.POST.get('delete')
+            item = get_object_or_404(Itens, id=item_id)
+            item.deleted_at = datetime.now()
+            item.save()
+            return redirect('list_detail', id_lista=id_lista)
+        elif 'return' in request.POST:
+            return redirect('to_do_list')
+    else:
+        form = ListasForm()
+
+    lista = get_object_or_404(Listas, id=id_lista, id_usuario=request.user)
+    itens = Itens.objects.filter(id_lista=lista, deleted_at=None)
+    return render(request, "to_do_list/list_detail.html", {'lista': lista, 'itens': itens, 'form': form})

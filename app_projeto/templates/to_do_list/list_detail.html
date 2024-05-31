@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ lista.nome }}</title>
+</head>
+<body>
+    <h1>{{ lista.nome }}</h1>
+
+    <!-- Formulário para adicionar novo item na lista -->
+    <form action="{% url 'list_detail' lista.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="add_item">Adicionar Novo Item</button>
+    </form>
+
+    <!-- Botão para retornar a listagem das listas -->
+    <form action="{% url 'to_do_list' %}" method="get">
+    <button type="submit"><-</button>
+    </form>
+
+    <ul>
+        {% for item in itens %}
+            <li>{{ item.nome }}</li>
+        {% empty %}
+            <li>Nenhum item nesta lista.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
