@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -117,7 +118,7 @@ def list_detail_view(request, id_lista):
             item = get_object_or_404(Itens, id=request.POST.get('item_id'))
             item.is_done = request.POST.get('is_done')
             item.save()
-            return redirect('list_detail', id_lista=id_lista)
+            return HttpResponse(status=204)
         elif 'return' in request.POST:
             return redirect('to_do_list')
 
