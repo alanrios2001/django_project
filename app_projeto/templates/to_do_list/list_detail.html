@@ -20,11 +20,19 @@
     </form>
 
     <ul>
-        {% for item in itens %}
-            <li>{{ item.nome }}</li>
-        {% empty %}
-            <li>Nenhum item nesta lista.</li>
-        {% endfor %}
+    {% for item in itens %}
+        <li>
+            <form action="{% url 'list_detail' lista.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <input type="hidden" name="is_done" value="False"> <!-- Envia False como padrão -->
+                <input type="checkbox" id="item-{{ item.id }}" name="is_done" value="True" {% if item.is_done %} checked {% endif %} onchange="this.form.submit()">
+                <label for="item-{{ item.id }}">{{ item.nome }}</label>
+            </form>
+        </li>
+    {% empty %}
+        <li>Nenhum item nesta lista.</li>
+    {% endfor %}
     </ul>
 </body>
 </html>

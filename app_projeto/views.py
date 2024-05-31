@@ -62,8 +62,10 @@ def signup_view(request):
 
 @login_required(login_url="/login/")
 def lists_view(request):
+    listas = Listas.objects.filter(id_usuario=request.user, deleted_at=None)
+    form = ListasForm()
+
     if request.method == 'POST':
-        form = ListasForm(request.POST)
         # lida com a exclusão de listas
         if 'delete' in request.POST:
             lista_id = request.POST.get('delete')
@@ -74,6 +76,7 @@ def lists_view(request):
 
         # lida com a adição de listas
         elif "add_list" in request.POST:
+            form = ListasForm(request.POST)
             if form.is_valid():
                 nova_lista = form.save(commit=False)
                 nova_lista.id_usuario = request.user
@@ -84,36 +87,38 @@ def lists_view(request):
         elif 'select' in request.POST:
             return redirect('list_detail', id_lista=request.POST.get('select'))
 
-    else:
-        form = ListasForm()
-
-    listas = Listas.objects.filter(id_usuario=request.user, deleted_at=None)
     return render(request, "to_do_list/lists.html", {'listas': listas, 'form': form})
 
 
 @login_required(login_url="/login/")
 def list_detail_view(request, id_lista):
+    lista = get_object_or_404(Listas, id=id_lista, id_usuario=request.user)
+    itens = Itens.objects.filter(id_lista=lista, deleted_at=None)
+    form = ListasForm()
+
     if request.method == 'POST':
-        form = ItensForm(request.POST)
-        # lida com a exclusão de itens
+        # lida com a adição de itens
         if 'add_item' in request.POST:
+            form = ItensForm(request.POST)
             if form.is_valid():
                 novo_item = form.save(commit=False)
                 novo_item.id_lista_id = id_lista
                 novo_item.save()
                 return redirect('list_detail', id_lista=id_lista)
-        # lida com a adição de itens
+        # lida com a remoção de itens
         elif 'delete' in request.POST:
             item_id = request.POST.get('delete')
             item = get_object_or_404(Itens, id=item_id)
             item.deleted_at = datetime.now()
             item.save()
             return redirect('list_detail', id_lista=id_lista)
+        # lida com a marcação de itens feitos/não feitos
+        elif 'is_done' in request.POST:
+            item = get_object_or_404(Itens, id=request.POST.get('item_id'))
+            item.is_done = request.POST.get('is_done')
+            item.save()
+            return redirect('list_detail', id_lista=id_lista)
         elif 'return' in request.POST:
             return redirect('to_do_list')
-    else:
-        form = ListasForm()
 
-    lista = get_object_or_404(Listas, id=id_lista, id_usuario=request.user)
-    itens = Itens.objects.filter(id_lista=lista, deleted_at=None)
     return render(request, "to_do_list/list_detail.html", {'lista': lista, 'itens': itens, 'form': form})
