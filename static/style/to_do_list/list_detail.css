@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white; /* Adjust background color */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    padding: 40px;
+    padding-bottom: 60px;
+    background-color: white; /* Adjust background color */
+    color: #022B3A; /* Adjust text color */
+}
+
+form {
+    padding: 10px 0; /* Adjust padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+form input[type="text"] {
+    border-radius: 5px;
+    border: 1px solid #022B3A;
+    background: #FFFFFF;
+    margin-right: 10px;
+    padding: 10px;
+    flex-grow: 1;
+    width: 400px;
+}
+
+form button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #022B3A;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border: 0px; /* Adjust border */
+    border-radius: 5px; /* Adjust border radius */
+    margin-bottom: 10px;
+    background-color: #E1E5F2;
+}
+
+.list-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.list-content span {
+    padding-left: 10px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+li form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+li form button {
+    padding: 5px 10px;
+    background-color: #022B3A;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+li form button[name="delete"] {
+    background-color: #022B3A;
+}
+
+.back-button {
+    position: absolute;
+    top: 50px; /* Adjust top position */
+    left: -250px; /* Adjust left position */
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.list-container {
+    position: relative;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}

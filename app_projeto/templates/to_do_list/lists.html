@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>To Do Lists</title>
+    <link rel="stylesheet" type="text/css" href="/static/style/to_do_list/lists.css">
 </head>
 <body>
-    <h1>To Do Lists de {{ request.user.username }}</h1>
+    <h1>Minhas Listas</h1>
 
     <!-- Formulário para adicionar nova lista -->
     <form action="{% url 'to_do_list' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" name="add_list">Adicionar Nova Lista</button>
+        <button type="submit" name="add_list">+ Nova Lista</button>
     </form>
 
     <ul>
         <!-- Realiza listagem das to_do_lists -->
         {% for lista in listas %}
             <li>
-                {{ lista.nome }}
-                <!-- Botão de Selecionar -->
-                <form action="{% url 'to_do_list' %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" name="select" value="{{ lista.id }}" style="background-color: red; color: white;">Selecionar</button>
-                </form>
+                <div class="list-content">
+                    <span>{{ lista.nome }}</span>
+                    <div class="buttons">
+                        <!-- Botão de Selecionar -->
+                        <form action="{% url 'to_do_list' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="select" value="{{ lista.id }}">Selecionar</button>
+                        </form>
 
-                <!-- Botão de Excluir -->
-                <form action="{% url 'to_do_list' %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" name="delete" value="{{ lista.id }}" style="background-color: red; color: white;">X</button>
-                </form>
+                        <!-- Botão de Excluir -->
+                        <form action="{% url 'to_do_list' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="delete" value="{{ lista.id }}">X</button>
+                        </form>
+                    </div>
+                </div>
             </li>
         {% endfor %}
     </ul>
