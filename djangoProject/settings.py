@@ -33,17 +33,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = settings.DEBUG
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['a238-187-107-8-102.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://a238-187-107-8-102.ngrok-free.app']
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ''  # Substitua pelo seu e-mail do Gmail
-EMAIL_HOST_PASSWORD = ''  # Use a senha de app sem espaços
+EMAIL_HOST_USER = 'alan.arm2001@gmail.com'  # Substitua pelo seu e-mail do Gmail
+EMAIL_HOST_PASSWORD = 'acbdljxgbqiuwzuy'  # Use a senha de app sem espaços
 
 # Application definition
 
