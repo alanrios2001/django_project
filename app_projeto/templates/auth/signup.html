@@ -1,39 +1,73 @@
-{% extends "base_generic.html" %}
-{% block content %}
-<div class="mt-5">
-    <h2>Cadastro</h2>
-    <form method="post" class="form-group">
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/login.css">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <base href="/">
+    <style>
+        label {
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="form" method="post">
+        <h2>Cadastro</h2>
         {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Usuário:</label>
-            <input type="text" name="username" id="username" class="form-control" required>
+        {% block content %}
+        <div class="inputs">
+            <div class="input">
+                <div>
+                    <label for="username" >Usuário:</label>
+                </div>
+                
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <div class="input">
+                <div>
+                    <label for="password">Senha:</label>
+                </div>
+                
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <div class="input">
+                <div>
+                    <label for="email">Email:</label>
+                </div>
+                
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="input">
+                <div>
+                    <label for="first_name">Primeiro Nome:</label>
+                </div>
+                
+                <input type="text" name="first_name" id="first_name" class="form-control" required>
+            </div>
+            <div class="input">
+                <div>
+                    <label for="last_name">Sobrenome:</label>
+                </div>
+                
+                <input type="text" name="last_name" id="last_name" class="form-control" required>
+            </div>
+    
+            {% if error %}
+                <p class="text-danger">{{ error }}</p>
+            {% endif %}
         </div>
+        {% endblock %}
 
-        <div class="form-group">
-            <label for="password">Senha:</label>
-            <input type="password" name="password" id="password" class="form-control" required>
+        <div class="submit">
+            <input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 25px;">
         </div>
-
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="first_name">Nome:</label>
-            <input type="text" name="first_name" id="first_name" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="last_name">Sobrenome:</label>
-            <input type="text" name="last_name" id="last_name" class="form-control" required>
-        </div>
-
-        <input type="submit" value="Cadastrar" class="btn btn-primary">
-
-        {% if error %}
-            <p class="text-danger">{{ error }}</p>
-        {% endif %}
     </form>
-</div>
-{% endblock %}
+</body>
+
+</html>
