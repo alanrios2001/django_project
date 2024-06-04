@@ -23,7 +23,7 @@ from app_projeto import views
 urlpatterns = [
     path("", views.home_view, name="home"),
     path("admin/", admin.site.urls),
-    path("login/", views.login_view, name="login"),
+    path("accounts/login/", views.login_view, name="login"),
     path("signup/", views.signup_view, name="signup"),
     path("lists/", views.lists_view, name="to_do_list"),
     path("lists/<int:id_lista>/", views.list_detail_view, name="list_detail"),

@@ -61,7 +61,7 @@ def signup_view(request):
         return render(request, "auth/signup.html")
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/accounts/login/")
 def lists_view(request):
     listas = Listas.objects.filter(id_usuario=request.user, deleted_at=None)
     form = ListasForm()
@@ -91,7 +91,7 @@ def lists_view(request):
     return render(request, "to_do_list/lists.html", {'listas': listas, 'form': form})
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/accounts/login/")
 def list_detail_view(request, id_lista):
     lista = get_object_or_404(Listas, id=id_lista, id_usuario=request.user)
     itens = Itens.objects.filter(id_lista=lista, deleted_at=None)
