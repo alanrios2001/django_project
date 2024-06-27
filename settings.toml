@@ -6,9 +6,3 @@ DATABASE_PASSWORD = ""
 DATABASE_HOST = "localhost"
 DATABASE_PORT = "3306"
 SECRET_KEY = ""
-
-[development]
-DEBUG = true
-
-[production]
-DEBUG = false
