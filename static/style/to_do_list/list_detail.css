@@ -5,7 +5,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white; /* Adjust background color */
+    background-color: white;
+    /* Adjust background color */
 }
 
 h1 {
@@ -13,12 +14,15 @@ h1 {
     margin-top: 20px;
     padding: 40px;
     padding-bottom: 60px;
-    background-color: white; /* Adjust background color */
-    color: #022B3A; /* Adjust text color */
+    background-color: white;
+    /* Adjust background color */
+    color: #022B3A;
+    /* Adjust text color */
 }
 
 form {
-    padding: 10px 0; /* Adjust padding */
+    padding: 10px 0;
+    /* Adjust padding */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,8 +62,10 @@ li {
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    border: 0px; /* Adjust border */
-    border-radius: 5px; /* Adjust border radius */
+    border: 0px;
+    /* Adjust border */
+    border-radius: 5px;
+    /* Adjust border radius */
     margin-bottom: 10px;
     background-color: #E1E5F2;
 }
@@ -101,9 +107,22 @@ li form button[name="delete"] {
 
 .back-button {
     position: absolute;
-    top: 50px; /* Adjust top position */
-    left: -250px; /* Adjust left position */
-    z-index: 999; /* Ensure it's above other content */
+    top: 50px;
+    /* Adjust top position */
+    left: -250px;
+    /* Adjust left position */
+    z-index: 999;
+    /* Ensure it's above other content */
+}
+
+.logout-button {
+    position: absolute;
+    top: 50px;
+    /* Adjust top position */
+    left: 250px;
+    /* Adjust left position */
+    z-index: 999;
+    /* Ensure it's above other content */
 }
 
 .list-container {

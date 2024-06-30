@@ -76,6 +76,16 @@ li {
     align-items: center;
 }
 
+.logout-button {
+    position: absolute;
+    top: 50px;
+    /* Adjust top position */
+    left: 450px;
+    /* Adjust left position */
+    z-index: 999;
+    /* Ensure it's above other content */
+}
+
 li form {
     display: flex;
     align-items: center;

@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/static/style/to_do_list/list_detail.css"> <!-- Reference the external CSS file -->
-    <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/static/style/to_do_list/list_detail.css">
+    <!-- Reference the external CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <base href="/">
 
     <title>{{ lista.nome }}</title>
 </head>
+
 <body>
     <div class="list-container">
+
+
         <!-- Botão para retornar a listagem das listas -->
         <form action="{% url 'to_do_list' %}" method="get" class="back-button">
             <button type="submit">
                 <i class="fa-solid fa-caret-left"></i>
             </button>
         </form>
+
+        <!-- Botão para fazer logout -->
+        <form action="{% url 'logout' %}" method="post" class="logout-button">
+            {% csrf_token %}
+            <button type="submit">
+                <i class="fa-solid fa-sign-out"></i>
+            </button>
+        </form>
+
 
         <h1>{{ lista.nome }}</h1>
 
@@ -32,29 +43,33 @@
         </form>
 
         <ul>
-        {% for item in itens %}
+            {% for item in itens %}
             <li>
                 <!-- Botão de Selecionar junto com os itens -->
                 <form action="{% url 'list_detail' lista.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <input type="hidden" name="item_id" value="{{ item.id }}">
                     <input type="hidden" name="is_done" value="False">
-                    <input type="checkbox" id="item-{{ item.id }}" name="is_done" value="True" {% if item.is_done %} checked {% endif %} onchange="this.form.submit()" style="position: relative; transform: scale(1.2); left: 5px;">
+                    <input type="checkbox" id="item-{{ item.id }}" name="is_done" value="True" {% if item.is_done %}
+                        checked {% endif %} onchange="this.form.submit()"
+                        style="position: relative; transform: scale(1.2); left: 5px;">
                     <label for="item-{{ item.id }}" style="padding-left: 10px;">{{ item.nome }}</label>
                 </form>
 
                 <!-- Botão de Excluir -->
                 <form action="{% url 'list_detail' lista.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit" name="delete" value="{{ item.id }}" style="position: relative ; background-color: #022B3A; color: white; left: 230px; padding: 7px; padding-inline: 10px;">
+                    <button type="submit" name="delete" value="{{ item.id }}"
+                        style="position: relative ; background-color: #022B3A; color: white; left: 230px; padding: 7px; padding-inline: 10px;">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </form>
             </li>
-        {% empty %}
+            {% empty %}
             <li>Nenhum item nesta lista.</li>
-        {% endfor %}
+            {% endfor %}
         </ul>
     </div>
 </body>
+
 </html>
