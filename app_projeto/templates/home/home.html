@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,31 +6,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <style>
+        a {
+            text-decoration: none;
+            color: #1F7A8C;
+        }
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #1F7A8C;
+            background-color: white;
             font-family: Arial, sans-serif;
         }
         .button {
             padding: 10px 20px;
-            font-size: 16px;
             text-decoration: none;
             color: #ffffff;
-            background-color: #022B3A;
+            background-color: #1F7A8C;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+        }
+
+        .button a {
+            color: white;
+            font-size: 24px;
+        }
+
+        .line {
+            width: 0;
+            height: 30px;
+            border-left: .3px solid #1F7A8C;
+        }
+
+        header {
+            height: 100px;
+            padding: 30px 200px;
+            display: flex;
+            font-size: 24px;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        header ul {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .nomobile {
+            display: block;
+        }
+
+        div.section {
+            color: #022B3A;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        div.section h1 {
+            font-size: 60px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        div.section h4 {
+            font-size: 32px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        div.section div {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            align-items: center;
+        }
+
+        div.section div a.link {
+            color: #022B3A;
+            display: flex;
+            font-weight: 500;
+            font-size: 24px;
+            align-items: center;
+        }
+
+        div.section .card {
+            padding: 70px;
+            border-radius: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            align-items: center;
+            max-width: 235px;
+            box-shadow: 4px 4px 5px 2px rgba(1.0, 1.0, 1.0, 0.25);
+            height: 390px;
+        }
+
+        div.section .card h3 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #022B3A;
+        }
+
+        div#beneficios {
+            display: flex;
+            flex-direction: row;
+            gap: 130px;
+            text-align: center;
+        }
+
+        #quality {
+            background-color: #1F7A8C;
+            padding: 150px 220px;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            gap: 90px;
+        }
+        
+        footer {
+            background-color: #022B3A;
+            padding: 32px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 1400px) {
+            div#beneficios {
+                gap: 30px;
+            }
+
+            #quality {
+                padding: 75px 110px;
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            header {
+                padding: 15px 50px;
+            }
+
+            div.section .card {
+                padding: 30px;
+                border-radius: 10px;
+                gap: 24px;
+                max-width: 235px;
+                height: 300px;
+            }
+
+            div#beneficios h3 {
+                font-size: 24px;
+            }
+
+            #quality .nomobile {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+
+            .button a {
+                font-size: 18px;
+            }
+
+            .line {
+                height: 20px;
+            }
+
+            div#beneficios {
+                flex-direction: column;
+            }
+
+            div.section .card {
+                padding: 70px;
+                border-radius: 20px;
+                gap: 36px;
+                width: 235px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nomobile {
+                display: none;
+            }
+
+            .login {
+                padding: 10px 20px;
+                text-decoration: none;
+                color: #ffffff;
+                background-color: #1F7A8C;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            div.section h1 {
+                font-size: 48px;
+            }
+
+            
+        }
+
+        @media (min-width: 640px) {
+
         }
     </style>
 </head>
 <body>
-    <button class="button" onclick="window.location.href='accounts/login';">
-        Login
-    </button>
+    <header>
+        <img src="{% static '/images/Logo_dark.svg' %}" width="170" height="65" alt="ícone usuário">
+        <ul>
+            <a class="nomobile" href="#quality">Benefícios</a>
+            <span class="line nomobile"></span>
+            <a class="login" href="{% url 'login' %}">Login</a>
+            <button class="button nomobile"><a href="{% url 'signup' %}">Organize sua vida</a></button>
+        </ul>
+    </header>
+    <div class="section">
+        <h1>Organize seu tempo e<br> tenha mais foco.</h1>
+        <h4 class="nomobile">Tenha controle da sua vida e organize seu<br> tempo para focar no que realmente<br> importa.</h4>
+        <div>
+            <button class="button nomobile"><a href="{% url 'signup' %}">Organize sua vida</a></button>
+            <a class="link" href="#quality">Saiba Mais <img src="{% static '/images/link.svg' %}" alt=""></a>
+        </div>
+    </div>
+    <div id="beneficios" class="section">
+        <div class="card">
+            <img src="{% static '/images/interface.svg' %}" alt="">
+            <h3>Interface intuitiva</h3>
+        </div>
+        <div class="card">
+            <img src="{% static '/images/device.svg' %}" alt="">
+            <h3>Suporte para vários dispositivos</h3>
+        </div>
+        <div class="card">
+            <img src="{% static '/images/organization.svg' %}" alt="">
+            <h3>Eficiência e organizção</h3>
+        </div>
+    </div>
+    <div id="quality" class="section">
+        <img class="nomobile" src="{% static '/images/computer.png' %}" alt="">
+        <h1>Suas listas ficam organizadas<br> e disponíveis a qualquer<br> momento</h1>
+    </div>
+    <div id="quality" class="section" style="background-color: #ffffff; color:#022B3A;">
+        <h1>Crie, altere e monitore<br> suas tarefas.<br> Tenha controle do<br> seu dia a dia!</h1>
+        <img class="nomobile" src="{% static '/images/smartphone.svg' %}" alt="" style="width: 20%">
+    </div>
+    <footer>
+        <img src="{% static '/images/Logo.svg' %}" alt="">
+    </footer>
 </body>
 </html>
