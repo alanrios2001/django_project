@@ -34,9 +34,23 @@ def signup_view(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
+        password_confirm = request.POST["password_confirm"]
         email = request.POST["email"]
+        email_confirm = request.POST["email_confirm"]
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
+
+        if password != password_confirm:
+            return render(request, "auth/signup.html", {"error": "As senhas estão diferentes"})
+        
+        if email != email_confirm:
+            return render(request, "auth/signup.html", {"error": "Os email's estão diferentes"})
+        
+        if User.objects.filter(username=username).exists():
+            return render(request, "auth/signup.html", {"error": "Nome de usuário já em uso"})
+        
+        if User.objects.filter(email=email).exists():
+            return render(request, "auth/signup.html", {"error": "Email já registrado"})
 
         user, created = User.objects.get_or_create(
             username=username,
