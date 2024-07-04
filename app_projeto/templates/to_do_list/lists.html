@@ -13,46 +13,48 @@
 </head>
 
 <body>
-    <h1>Minhas Listas</h1>
+    <div class="list-container">
+        <!-- Botão para fazer logout -->
+        <form action="{% url 'logout' %}" method="post" class="logout-button">
+            {% csrf_token %}
+            <button type="submit">
+                <i class="fa-solid fa-sign-out"></i>
+            </button>
+        </form>
 
-    <!-- Botão para fazer logout -->
-    <form action="{% url 'logout' %}" method="post" class="logout-button">
-        {% csrf_token %}
-        <button type="submit">
-            <i class="fa-solid fa-sign-out"></i>
-        </button>
-    </form>
+        <h1>Minhas Listas</h1>
 
-    <!-- Formulário para adicionar nova lista -->
-    <form action="{% url 'to_do_list' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="add_list">+ Nova Lista</button>
-    </form>
+        <!-- Formulário para adicionar nova lista -->
+        <form action="{% url 'to_do_list' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="add_list">+ Nova Lista</button>
+        </form>
 
-    <ul>
-        <!-- Realiza listagem das to_do_lists -->
-        {% for lista in listas %}
-        <li>
-            <div class="list-content">
-                <span>{{ lista.nome }}</span>
-                <div class="buttons">
-                    <!-- Botão de Selecionar -->
-                    <form action="{% url 'to_do_list' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" name="select" value="{{ lista.id }}">Selecionar</button>
-                    </form>
+        <ul>
+            <!-- Realiza listagem das to_do_lists -->
+            {% for lista in listas %}
+            <li>
+                <div class="list-content">
+                    <span>{{ lista.nome }}</span>
+                    <div class="buttons">
+                        <!-- Botão de Selecionar -->
+                        <form action="{% url 'to_do_list' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="select" value="{{ lista.id }}">Selecionar</button>
+                        </form>
 
-                    <!-- Botão de Excluir -->
-                    <form action="{% url 'to_do_list' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" name="delete" value="{{ lista.id }}">X</button>
-                    </form>
+                        <!-- Botão de Excluir -->
+                        <form action="{% url 'to_do_list' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="delete" value="{{ lista.id }}">X</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 
 </html>

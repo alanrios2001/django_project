@@ -80,7 +80,7 @@ li {
     position: absolute;
     top: 50px;
     /* Adjust top position */
-    left: 450px;
+    left: 250px;
     /* Adjust left position */
     z-index: 999;
     /* Ensure it's above other content */
@@ -103,4 +103,8 @@ li form button {
 
 li form button[name="delete"] {
     background-color: #022B3A;
+}
+
+.list-container {
+    position: relative;
 }
