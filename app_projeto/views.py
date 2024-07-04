@@ -41,16 +41,40 @@ def signup_view(request):
         last_name = request.POST["last_name"]
 
         if password != password_confirm:
-            return render(request, "auth/signup.html", {"error": "As senhas estão diferentes"})
+            return render(request, "auth/signup.html", {
+                "error": "As senhas estão diferentes",
+                "username": username,
+                "email": email,
+                "email_confirm": email_confirm,
+                "first_name": first_name,
+                "last_name": last_name
+            })
         
         if email != email_confirm:
-            return render(request, "auth/signup.html", {"error": "Os email's estão diferentes"})
-        
+            return render(request, "auth/signup.html", {
+                "error": "Os emails estão diferentes",
+                "username": username,
+                "email": email,
+                "first_name": first_name,
+                "last_name": last_name
+            })
+
         if User.objects.filter(username=username).exists():
-            return render(request, "auth/signup.html", {"error": "Nome de usuário já em uso"})
+            return render(request, "auth/signup.html", {
+                "error": "Nome de usuário já existente",
+                "email": email,
+                "email_confirm": email_confirm,
+                "first_name": first_name,
+                "last_name": last_name
+            })
         
         if User.objects.filter(email=email).exists():
-            return render(request, "auth/signup.html", {"error": "Email já registrado"})
+            return render(request, "auth/signup.html", {
+                "error": "Esse email já está registrado",
+                "username": username,
+                "first_name": first_name,
+                "last_name": last_name
+            })
 
         user, created = User.objects.get_or_create(
             username=username,

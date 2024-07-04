@@ -30,49 +30,49 @@
                     <label for="username" >Usuário:</label>
                 </div>
                 
-                <input type="text" name="username" id="username" placeholder="Usuário" class="form-control" required>
+                <input type="text" name="username" id="username" placeholder="Usuário" value="{{ username }}" class="form-control" required>
             </div>
             <div class="input">
                 <div>
                     <label for="email">Email:</label>
                 </div>
                 
-                <input type="email" name="email" id="email" placeholder="Ex: user@gmail.com" class="form-control" required>
+                <input type="email" name="email" id="email" placeholder="Ex: user@gmail.com" value="{{ email }}" class="form-control" required>
             </div>
             <div class="input">
                 <div>
                     <label for="email_confirm">Repita o email:</label>
                 </div>
                 
-                <input type="email" name="email_confirm" id="email_confirm" placeholder="Repita o email acima" class="form-control" required>
+                <input type="email" name="email_confirm" id="email_confirm" placeholder="Repita o email acima" value="{{ email_confirm }}" class="form-control" required>
             </div>
             <div class="input">
                 <div>
                     <label for="password">Senha:</label>
                 </div>
                 
-                <input type="password" name="password" id="password" placeholder="Ex: AnA@2956!" class="form-control" required>
+                <input type="password" name="password" id="password" placeholder="Ex: AnA@2956!" value="{{ password }}" class="form-control" required>
             </div>
             <div class="input">
                 <div>
                     <label for="password_confirm">Confirme a senha:</label>
                 </div>
                 
-                <input type="password" name="password_confirm" id="password_confirm" placeholder="Repita a senha acima" class="form-control" required>
+                <input type="password" name="password_confirm" id="password_confirm" placeholder="Repita a senha acima" value="{{ password_confirm }}" class="form-control" required>
             </div>
             <div class="input">
                 <div>
                     <label for="first_name">Primeiro Nome:</label>
                 </div>
                 
-                <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" required>
+                <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" value="{{ first_name }}" class="form-control" required>
             </div>
             <div class="input">
                 <div>
                     <label for="last_name">Sobrenome:</label>
                 </div>
                 
-                <input type="text" name="last_name" id="last_name" placeholder="Seu sobrenome" class="form-control" required>
+                <input type="text" name="last_name" id="last_name" placeholder="Seu sobrenome" value="{{ last_name }}" class="form-control" required>
             </div>
     
             {% if error %}
